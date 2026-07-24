@@ -93,12 +93,12 @@
         </nav>
       </div>
       <aside class="desktop-widgets" aria-label="Desktop utilities">
-        <section class="desktop-widget mood-widget" style="--widget-x: -265px; --widget-y: -95px;"><header class="widget-titlebar">Current Mood</header><p class="widget-value">&#9788; Soft focus</p><small>clear skies, slow ideas</small></section>
-        <section class="desktop-widget listening-widget" style="--widget-x: 270px; --widget-y: -70px;"><header class="widget-titlebar">Listening To</header><p class="widget-value">Afternoon FM</p><small>low volume / on repeat</small></section>
-        <section class="desktop-widget quote-widget" style="--widget-x: -280px; --widget-y: 122px;"><header class="widget-titlebar">Today's Quote</header><p class="widget-quote">“Keep a little room in your heart for the unimaginable.”</p></section>
-        <section class="desktop-widget clock-widget" style="--widget-x: 282px; --widget-y: 130px;"><header class="widget-titlebar">Clock</header><time class="widget-time" id="widgetClock">--:--</time><small id="widgetDate">Loading date…</small></section>
-        <section class="desktop-widget status-widget" style="--widget-x: -210px; --widget-y: 255px;"><header class="widget-titlebar">Status</header><p><span class="status-light"></span> online, taking notes</p></section>
-        <section class="desktop-widget updates-widget" style="--widget-x: 208px; --widget-y: 252px;"><header class="widget-titlebar">Updates</header><p><b>2 new</b> archive entries</p><small>last saved today</small></section>
+        <section class="desktop-widget mood-widget"><header class="widget-titlebar">Current Mood</header><p class="widget-value">&#9788; Soft focus</p><small>clear skies, slow ideas</small></section>
+        <section class="desktop-widget listening-widget"><header class="widget-titlebar">Listening To</header><p class="widget-value">Afternoon FM</p><small>low volume / on repeat</small></section>
+        <section class="desktop-widget quote-widget"><header class="widget-titlebar">Today's Quote</header><p class="widget-quote">“Keep a little room in your heart for the unimaginable.”</p></section>
+        <section class="desktop-widget clock-widget"><header class="widget-titlebar">Clock</header><time class="widget-time" id="widgetClock">--:--</time><small id="widgetDate">Loading date…</small></section>
+        <section class="desktop-widget status-widget"><header class="widget-titlebar">Status</header><p><span class="status-light"></span> online, taking notes</p></section>
+        <section class="desktop-widget updates-widget"><header class="widget-titlebar">Updates</header><p><b>2 new</b> archive entries</p><small>last saved today</small></section>
       </aside>
       <p class="widget-hint">Drag widget title bars to rearrange your desk</p>
       <p class="welcome-status"><span aria-hidden="true">&#9679;</span> Ready</p>
@@ -151,7 +151,8 @@
           if (!widget.classList.contains('dragging')) return;
           var x = originX + event.clientX - startX; var y = originY + event.clientY - startY;
           widget.dataset.x = x; widget.dataset.y = y;
-          widget.style.transform = 'translate(calc(-50% + ' + x + 'px), calc(-50% + ' + y + 'px))';
+          widget.style.setProperty('--widget-x', x + 'px');
+          widget.style.setProperty('--widget-y', y + 'px');
         });
         function stopDrag() { widget.classList.remove('dragging'); }
         handle.addEventListener('pointerup', stopDrag); handle.addEventListener('pointercancel', stopDrag);
