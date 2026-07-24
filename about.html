@@ -8,6 +8,25 @@
 </head>
 <body>
 
+  <!-- THE APP WINDOW — see index.html for full explanation of this chrome -->
+  <div class="app-window">
+
+    <div class="title-bar">
+      <div class="title-bar-label">
+        <span class="title-bar-icon" aria-hidden="true"></span>
+        Your Name — About
+      </div>
+      <div class="title-bar-controls" aria-hidden="true">
+        <span>&#8211;</span>
+        <span>&#9633;</span>
+        <span class="close">&times;</span>
+      </div>
+    </div>
+
+    <div class="menu-bar" aria-hidden="true">
+      <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+    </div>
+
   <!-- Shared header/nav (identical to index.html) -->
   <header class="site-header">
     <a class="site-title" href="index.html">Your Name</a>
@@ -55,6 +74,8 @@
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
   </footer>
+
+  </div><!-- /.app-window -->
 
   <script src="js/ui.js"></script>
 </body>

@@ -12,6 +12,33 @@
 <body>
 
   <!--
+    THE APP WINDOW
+    Everything on the page lives inside this single floating "desktop
+    application window" — titlebar, menu bar, nav toolbar, content, and
+    a status-bar footer — echoing Windows XP/Vista chrome + Frutiger Aero.
+    This wrapper is repeated identically on every page.
+  -->
+  <div class="app-window">
+
+    <!-- Fake OS titlebar: icon + page name + minimize/maximize/close dots -->
+    <div class="title-bar">
+      <div class="title-bar-label">
+        <span class="title-bar-icon" aria-hidden="true"></span>
+        Your Name — Home
+      </div>
+      <div class="title-bar-controls" aria-hidden="true">
+        <span>&#8211;</span>
+        <span>&#9633;</span>
+        <span class="close">&times;</span>
+      </div>
+    </div>
+
+    <!-- Explorer-style menu bar, purely decorative/nostalgic -->
+    <div class="menu-bar" aria-hidden="true">
+      <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+    </div>
+
+  <!--
     Site-wide header/nav.
     This exact block is repeated on every page (index, writing, gallery, about).
     Because there's no templating system on GitHub Pages by default,
@@ -88,12 +115,14 @@
   </main>
 
   <!--
-    Site-wide footer.
+    Site-wide footer, styled as an OS-style status bar.
     Also repeated identically on every page.
   -->
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
   </footer>
+
+  </div><!-- /.app-window -->
 
   <!-- Shared JS, loaded last so the DOM exists before scripts run -->
   <script src="js/ui.js"></script>
