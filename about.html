@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | My Site</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Shared header/nav (identical to index.html) -->
+  <header class="site-header">
+    <a class="site-title" href="index.html">Your Name</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-heading">
+      <h1>About</h1>
+    </section>
+
+    <!-- Simple two-part bio layout: photo + text. Easy to expand with more <section>s. -->
+    <section class="about-content">
+      <img class="about-photo" src="img/icons/placeholder-avatar.svg" alt="Portrait of Your Name">
+
+      <div class="about-text">
+        <p>
+          Write a short bio here — who you are, what you work on,
+          and what this site is for.
+        </p>
+        <p>
+          Add as many paragraphs as you like; this is plain content,
+          no layout logic needed.
+        </p>
+
+        <!-- Contact / social links list -->
+        <ul class="social-links">
+          <li><a href="mailto:you@example.com">Email</a></li>
+          <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
+  </footer>
+
+  <script src="js/ui.js"></script>
+</body>
+</html>

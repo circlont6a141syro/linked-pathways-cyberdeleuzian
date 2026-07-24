@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | My Site</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Shared header/nav (identical to index.html) -->
+  <header class="site-header">
+    <a class="site-title" href="index.html">Your Name</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-heading">
+      <h1>Gallery</h1>
+      <p>A collection of images. Full-size originals live inside the <code>/gallery</code> folder.</p>
+    </section>
+
+    <!--
+      Image grid.
+      TO ADD A NEW IMAGE:
+        1. Drop the image file into /gallery, e.g. gallery/photo-02.jpg
+           (keep a reasonably web-optimized file size).
+        2. Add one new <figure> block below.
+      Each <figure> pairs the image with a <figcaption>, which is the
+      semantically correct way to caption an image in HTML5.
+    -->
+    <section class="gallery-grid" id="galleryGrid">
+
+      <figure class="gallery-item">
+        <img src="gallery/photo-01.jpg" alt="Description of photo 1" loading="lazy">
+        <figcaption>Caption for photo 1</figcaption>
+      </figure>
+
+      <!-- Add more <figure class="gallery-item"> blocks here -->
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
+  </footer>
+
+  <script src="js/ui.js"></script>
+</body>
+</html>

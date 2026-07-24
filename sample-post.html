@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Post Title | My Site</title>
+
+  <!-- Note the "../" prefix: this file lives one folder deeper than the
+       root pages, so all root-relative asset paths need to step back up. -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Shared header/nav — links here also use "../" since we're inside /writing -->
+  <header class="site-header">
+    <a class="site-title" href="../index.html">Your Name</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../writing.html" class="active">Writing</a></li>
+        <li><a href="../gallery.html">Gallery</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!--
+      This is a template for a single writing piece.
+      TO USE: copy this file, rename it (e.g. writing/my-next-essay.html),
+      edit the <title>, <h1>, date, and body content, then link it from
+      writing.html's post list.
+    -->
+    <article class="page-heading">
+      <h1>Sample Post Title</h1>
+      <p class="post-date">Jan 1, 2026</p>
+    </article>
+
+    <section class="post-body">
+      <p>
+        This is the body of the sample post. Replace this paragraph
+        with your actual writing.
+      </p>
+      <p>
+        You can use any standard HTML here — headings, blockquotes,
+        lists, images (referenced as <code>../img/...</code> or
+        local images placed alongside this file in <code>/writing</code>).
+      </p>
+    </section>
+
+    <p><a href="../writing.html">&larr; Back to all writing</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
+  </footer>
+
+  <script src="../js/ui.js"></script>
+</body>
+</html>

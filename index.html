@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Responsive viewport so the layout scales correctly on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | My Site</title>
+
+  <!-- Single global stylesheet, shared across every page -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!--
+    Site-wide header/nav.
+    This exact block is repeated on every page (index, writing, gallery, about).
+    Because there's no templating system on GitHub Pages by default,
+    "shared" markup like this is just copy-pasted per page — keep the
+    class names identical so one stylesheet/script can target them all.
+  -->
+  <header class="site-header">
+    <a class="site-title" href="index.html">Your Name</a>
+
+    <!-- nav toggle button, used only on small screens (see js/ui.js) -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main content area for this specific page -->
+  <main id="main-content">
+
+    <!-- Hero section: full-width intro banner using img/background.jpg -->
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1>Hi, I'm Your Name.</h1>
+        <p>Writer, maker, and occasional photographer.</p>
+      </div>
+    </section>
+
+    <!-- Short intro / highlights section -->
+    <section class="intro">
+      <h2>Welcome</h2>
+      <p>
+        This is my personal corner of the internet. Explore my
+        <a href="writing.html">writing</a>, browse the
+        <a href="gallery.html">gallery</a>, or learn more
+        <a href="about.html">about me</a>.
+      </p>
+    </section>
+
+    <!--
+      Featured content grid.
+      To add a new featured card later: copy one <article class="card">
+      block and edit its contents — the CSS grid handles new items
+      automatically, no layout changes needed.
+    -->
+    <section class="featured">
+      <h2>Featured</h2>
+      <div class="card-grid" id="featuredGrid">
+
+        <article class="card">
+          <h3>Latest Piece</h3>
+          <p>A short teaser description of your most recent writing.</p>
+          <a href="writing.html">Read more &rarr;</a>
+        </article>
+
+        <article class="card">
+          <h3>Latest Photos</h3>
+          <p>A short teaser description of a recent gallery addition.</p>
+          <a href="gallery.html">View gallery &rarr;</a>
+        </article>
+
+        <!-- Add more <article class="card"> blocks here as needed -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!--
+    Site-wide footer.
+    Also repeated identically on every page.
+  -->
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
+  </footer>
+
+  <!-- Shared JS, loaded last so the DOM exists before scripts run -->
+  <script src="js/ui.js"></script>
+</body>
+</html>

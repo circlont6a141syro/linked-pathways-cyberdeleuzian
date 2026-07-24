@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing | My Site</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Shared header/nav (identical to index.html) -->
+  <header class="site-header">
+    <a class="site-title" href="index.html">Your Name</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="writing.html" class="active">Writing</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-heading">
+      <h1>Writing</h1>
+      <p>Essays, notes, and short pieces. Individual pieces live as their own HTML files inside the <code>/writing</code> folder.</p>
+    </section>
+
+    <!--
+      List of writing pieces.
+      TO ADD A NEW PIECE:
+        1. Create a new file inside /writing, e.g. writing/my-new-essay.html
+           (copy writing/sample-post.html as a starting template).
+        2. Add one new <li> below linking to it.
+      This list is plain HTML on purpose — no build step, no database,
+      just add a link and it's live.
+    -->
+    <section class="post-list">
+      <ul id="postList">
+        <li class="post-list-item">
+          <a href="writing/sample-post.html">Sample Post Title</a>
+          <span class="post-date">Jan 1, 2026</span>
+          <p>One or two lines summarizing the piece go here.</p>
+        </li>
+
+        <!-- Add more <li class="post-list-item"> entries here as you publish -->
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Your Name. Built with plain HTML, CSS &amp; JS.</p>
+  </footer>
+
+  <script src="js/ui.js"></script>
+</body>
+</html>
