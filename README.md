@@ -8,21 +8,23 @@ to a GitHub repository and served with **GitHub Pages**.
 
 ```
 /
-├── index.html         Homepage (hero banner + featured content)
-├── writing.html        List of writing pieces, links into /writing
-├── gallery.html         Image gallery grid, images live in /gallery
-├── about.html            Bio page
-├── css/
-│   └── style.css        Single global stylesheet (variables at the top)
+├── index.html
+├── writing.html
+├── gallery.html
+├── about.html
+├── style.css            ← at the root, NOT in a css/ folder
+├── icons.svg             ← at the root (not in the README at all)
+├── cursor.svg              ← at the root (not in the README at all)
 ├── js/
-│   └── ui.js               Shared vanilla JS (mobile nav, footer year, etc.)
+│   └── ui.js
 ├── img/
-│   ├── background.jpg   Hero background image
-│   └── icons/                Small site icons/avatars
+│   ├── background.jpg
+│   └── icons/
+│       └── placeholder-avatar.svg
 ├── writing/
-│   └── sample-post.html  Template for an individual writing piece
+│   └── sample-post.html
 └── gallery/
-    └── photo-01.jpg       Example gallery image
+    └── (not currently used — gallery.html draws its thumbnails with CSS, no real image files yet)
 ```
 
 ## Deploying to GitHub Pages
