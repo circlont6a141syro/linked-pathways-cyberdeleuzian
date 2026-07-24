@@ -79,6 +79,10 @@
   --ease-aero: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-fast:  140ms;
   --dur-med:   260ms;
+
+  /* ---- Background system (see section 2b) ---- */
+  --bg-darken:      rgba(15, 25, 15, 0.32);  /* darkening scrim over the photo */
+  --bg-blur:         3px;                     /* blur applied beneath the window only */
 }
 
 /* --------------------------------------------------------------------------
@@ -88,14 +92,48 @@
 html, body { margin: 0; padding: 0; }
 
 html {
-  /* full-bleed nature backdrop the whole "app window" floats on —
-     a soft botanical gradient stands in for a desktop wallpaper photo */
-  background:
-    radial-gradient(1200px 800px at 15% -10%, rgba(255,255,255,0.35), transparent 60%),
-    radial-gradient(1000px 700px at 100% 100%, rgba(255,255,255,0.18), transparent 55%),
-    linear-gradient(160deg, #bfe0c8 0%, #7fb27f 28%, #4e8b5b 55%, #235d33 82%, #1c4a29 100%);
-  background-attachment: fixed;
   min-height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   2b. BACKGROUND SYSTEM
+   ---------------------------------------------------------------------
+   The user-supplied photo (img/background.jpg) fills the viewport and
+   stays fixed while the page scrolls, like a desktop wallpaper sitting
+   behind every window. It keeps its own true colors — no tint or
+   gradient is blended into the image itself. Two lightweight layers sit
+   on top of it, in this order:
+     1. .bg-photo   — the fixed, cover-sized photograph (unmodified colors)
+     2. .bg-scrim   — a soft dark overlay so foreground glass panels stay
+                       readable, plus an optional blur so busy parts of
+                       the photo recede beneath the interface
+   Both layers live behind the .app-window in the stacking order, so the
+   wallpaper is always visible in the margins around the floating window
+   rather than being fully hidden by it.
+   -------------------------------------------------------------------------- */
+.bg-photo {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* fixed attachment = the photo stays put while the page content scrolls */
+  background-attachment: fixed;
+}
+
+.bg-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  /* darkens the photo slightly so the glass UI reads clearly, without
+     ever fully hiding it — raise/lower --bg-darken's alpha to taste */
+  background: var(--bg-darken);
+  /* subtle blur softens the image behind the interface; comment out
+     backdrop-filter to keep the background perfectly crisp instead */
+  backdrop-filter: blur(var(--bg-blur));
+  -webkit-backdrop-filter: blur(var(--bg-blur));
 }
 
 body {
@@ -106,7 +144,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* generous padding so the desktop wallpaper is always visible around the window */
+  background: transparent; /* the .bg-photo / .bg-scrim layers show through */
+  /* generous padding so the wallpaper is always visible around the window */
   padding: clamp(1rem, 4vw, 3.5rem) clamp(0.75rem, 3vw, 2rem);
 }
 
