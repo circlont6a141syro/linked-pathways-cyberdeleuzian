@@ -29,11 +29,15 @@
 
     <div class="menu-bar" aria-hidden="true">
       <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+      <span class="menu-status"><span class="status-light"></span>Online</span>
     </div>
 
   <!-- Shared header/nav (identical to index.html) -->
   <header class="site-header">
     <a class="site-title" href="index.html"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#leaf"></use></svg>Your Name</a>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Hover sounds off — click to enable">
+      <svg class="aero-icon" aria-hidden="true"><use href="icons.svg#speaker"></use></svg>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -50,7 +54,7 @@
 
   <main id="main-content" class="image-archive-main">
     <section class="image-archive" aria-labelledby="image-archive-title">
-      <header class="image-archive-toolbar"><div><p class="archive-eyebrow">My Pictures</p><h1 id="image-archive-title">Image Archive</h1></div><p class="view-label">Thumbnail View</p></header>
+      <header class="image-archive-toolbar"><div><p class="archive-eyebrow">My Pictures</p><h1 id="image-archive-title"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#camera"></use></svg> Image Archive</h1></div><p class="view-label">Thumbnail View</p></header>
       <div class="image-thumb-grid" id="imageThumbGrid">
         <button class="image-thumb selected" type="button" data-title="Morning Window" data-description="Soft light catches a quiet room before the day begins." data-date="May 21, 2026" data-tags="morning, interior, light" data-image="thumb-window" aria-pressed="true"><span class="thumb-art thumb-window" aria-hidden="true"></span><span>Morning Window</span></button>
         <button class="image-thumb" type="button" data-title="Garden Path" data-description="A narrow path beneath fresh green leaves after rain." data-date="May 09, 2026" data-tags="garden, rain, green" data-image="thumb-garden" aria-pressed="false"><span class="thumb-art thumb-garden" aria-hidden="true"></span><span>Garden Path</span></button>
@@ -93,18 +97,25 @@
       var date = document.getElementById('previewDate');
       var tags = document.getElementById('previewTags');
       var position = document.getElementById('imagePosition');
+      var previewSection = document.querySelector('.image-preview');
       var selected = 0;
       function showImage(index) {
         selected = (index + thumbs.length) % thumbs.length;
         var thumb = thumbs[selected];
         thumbs.forEach(function (item) { item.classList.remove('selected'); item.setAttribute('aria-pressed', 'false'); });
         thumb.classList.add('selected'); thumb.setAttribute('aria-pressed', 'true');
+        if (previewSection) previewSection.classList.add('is-swapping');
         art.className = 'preview-art ' + thumb.dataset.image;
         title.textContent = thumb.dataset.title;
         description.textContent = thumb.dataset.description;
         date.textContent = thumb.dataset.date;
         tags.textContent = thumb.dataset.tags;
         position.textContent = (selected + 1) + ' of ' + thumbs.length;
+        if (previewSection) {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { previewSection.classList.remove('is-swapping'); });
+          });
+        }
       }
       thumbs.forEach(function (thumb, index) { thumb.addEventListener('click', function () { showImage(index); }); });
       document.getElementById('previousImage').addEventListener('click', function () { showImage(selected - 1); });

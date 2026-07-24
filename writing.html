@@ -29,11 +29,15 @@
 
     <div class="menu-bar" aria-hidden="true">
       <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+      <span class="menu-status"><span class="status-light"></span>Online</span>
     </div>
 
   <!-- Shared header/nav (identical to index.html) -->
   <header class="site-header">
     <a class="site-title" href="index.html"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#leaf"></use></svg>Your Name</a>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Hover sounds off — click to enable">
+      <svg class="aero-icon" aria-hidden="true"><use href="icons.svg#speaker"></use></svg>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -55,23 +59,23 @@
         <aside class="folder-pane" aria-label="Writing folders">
           <p class="pane-label">Folders</p>
           <div class="folder-tree">
-            <button class="folder-item active" type="button" data-folder="all" aria-pressed="true"><span aria-hidden="true">▾</span> Writing Archive</button>
-            <button class="folder-item nested" type="button" data-folder="Essays" aria-pressed="false"><span aria-hidden="true">▸</span> Essays</button>
-            <button class="folder-item nested" type="button" data-folder="Philosophy" aria-pressed="false"><span aria-hidden="true">▸</span> Philosophy</button>
-            <button class="folder-item nested" type="button" data-folder="Poetry" aria-pressed="false"><span aria-hidden="true">▸</span> Poetry</button>
-            <button class="folder-item nested" type="button" data-folder="Research" aria-pressed="false"><span aria-hidden="true">▸</span> Research</button>
-            <button class="folder-item nested" type="button" data-folder="Notes" aria-pressed="false"><span aria-hidden="true">▸</span> Notes</button>
+            <button class="folder-item active" type="button" data-folder="all" aria-pressed="true"><span class="folder-glyph" aria-hidden="true"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#folder"></use></svg></span> Writing Archive</button>
+            <button class="folder-item nested" type="button" data-folder="Essays" aria-pressed="false"><span class="folder-glyph" aria-hidden="true"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#folder"></use></svg></span> Essays</button>
+            <button class="folder-item nested" type="button" data-folder="Philosophy" aria-pressed="false"><span class="folder-glyph" aria-hidden="true"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#folder"></use></svg></span> Philosophy</button>
+            <button class="folder-item nested" type="button" data-folder="Poetry" aria-pressed="false"><span class="folder-glyph" aria-hidden="true"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#folder"></use></svg></span> Poetry</button>
+            <button class="folder-item nested" type="button" data-folder="Research" aria-pressed="false"><span class="folder-glyph" aria-hidden="true"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#folder"></use></svg></span> Research</button>
+            <button class="folder-item nested" type="button" data-folder="Notes" aria-pressed="false"><span class="folder-glyph" aria-hidden="true"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#folder"></use></svg></span> Notes</button>
           </div><p class="folder-count" id="folderCount">6 documents</p>
         </aside>
         <section class="file-pane" aria-label="Archive files">
           <div class="file-pane-header"><span>Name</span><span>Date Modified</span><span>Category</span><span>Preview</span></div>
           <div class="file-list" id="fileList">
-            <button class="archive-file" type="button" data-category="Essays" data-title="The Long Way Home" data-date="May 18, 2026" data-body="A short meditation on returning to familiar places after enough time has made them strange again. The roads remain, but the person arriving is never quite the one who left."><span class="file-name"><i aria-hidden="true">▤</i>The Long Way Home</span><time datetime="2026-05-18">May 18, 2026</time><span>Essays</span><span>A meditation on returning.</span></button>
-            <button class="archive-file" type="button" data-category="Philosophy" data-title="Notes on Attention" data-date="April 03, 2026" data-body="Attention is not a spotlight we aim at the world; it is also the room we build around what matters. These notes collect a few fragments about distraction, care, and the dignity of looking twice."><span class="file-name"><i aria-hidden="true">▤</i>Notes on Attention</span><time datetime="2026-04-03">April 03, 2026</time><span>Philosophy</span><span>Fragments on noticing.</span></button>
-            <button class="archive-file" type="button" data-category="Poetry" data-title="Weather Report" data-date="March 27, 2026" data-body="Morning arrives in a clean blue room. The trees keep their own counsel. Somewhere a train pulls one long thread through the fabric of the day."><span class="file-name"><i aria-hidden="true">▤</i>Weather Report</span><time datetime="2026-03-27">March 27, 2026</time><span>Poetry</span><span>Four lines for a blue morning.</span></button>
-            <button class="archive-file" type="button" data-category="Research" data-title="Field Notes: Urban Gardens" data-date="February 14, 2026" data-body="Observations from several public gardens: how small patches of tending become invitations, what grows in overlooked places, and why shared maintenance changes the texture of a block."><span class="file-name"><i aria-hidden="true">▤</i>Field Notes: Urban Gardens</span><time datetime="2026-02-14">February 14, 2026</time><span>Research</span><span>Observations from shared ground.</span></button>
-            <button class="archive-file" type="button" data-category="Notes" data-title="Margins, Vol. 2" data-date="January 30, 2026" data-body="A notebook page of small discoveries: a sentence overheard on the bus, a recipe corrected in pencil, the color of rain caught in an afternoon window."><span class="file-name"><i aria-hidden="true">▤</i>Margins, Vol. 2</span><time datetime="2026-01-30">January 30, 2026</time><span>Notes</span><span>Small discoveries in pencil.</span></button>
-            <button class="archive-file" type="button" data-category="Essays" data-title="A Useful Silence" data-date="January 12, 2026" data-body="Silence is sometimes absence, but it can also be a working surface. This essay considers the pauses that let a thought become more than its first, loudest version."><span class="file-name"><i aria-hidden="true">▤</i>A Useful Silence</span><time datetime="2026-01-12">January 12, 2026</time><span>Essays</span><span>On the pauses that help thought.</span></button>
+            <button class="archive-file" type="button" data-category="Essays" data-title="The Long Way Home" data-date="May 18, 2026" data-body="A short meditation on returning to familiar places after enough time has made them strange again. The roads remain, but the person arriving is never quite the one who left."><span class="file-name"><svg class="aero-icon file-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg>The Long Way Home</span><time datetime="2026-05-18">May 18, 2026</time><span>Essays</span><span>A meditation on returning.</span></button>
+            <button class="archive-file" type="button" data-category="Philosophy" data-title="Notes on Attention" data-date="April 03, 2026" data-body="Attention is not a spotlight we aim at the world; it is also the room we build around what matters. These notes collect a few fragments about distraction, care, and the dignity of looking twice."><span class="file-name"><svg class="aero-icon file-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg>Notes on Attention</span><time datetime="2026-04-03">April 03, 2026</time><span>Philosophy</span><span>Fragments on noticing.</span></button>
+            <button class="archive-file" type="button" data-category="Poetry" data-title="Weather Report" data-date="March 27, 2026" data-body="Morning arrives in a clean blue room. The trees keep their own counsel. Somewhere a train pulls one long thread through the fabric of the day."><span class="file-name"><svg class="aero-icon file-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg>Weather Report</span><time datetime="2026-03-27">March 27, 2026</time><span>Poetry</span><span>Four lines for a blue morning.</span></button>
+            <button class="archive-file" type="button" data-category="Research" data-title="Field Notes: Urban Gardens" data-date="February 14, 2026" data-body="Observations from several public gardens: how small patches of tending become invitations, what grows in overlooked places, and why shared maintenance changes the texture of a block."><span class="file-name"><svg class="aero-icon file-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg>Field Notes: Urban Gardens</span><time datetime="2026-02-14">February 14, 2026</time><span>Research</span><span>Observations from shared ground.</span></button>
+            <button class="archive-file" type="button" data-category="Notes" data-title="Margins, Vol. 2" data-date="January 30, 2026" data-body="A notebook page of small discoveries: a sentence overheard on the bus, a recipe corrected in pencil, the color of rain caught in an afternoon window."><span class="file-name"><svg class="aero-icon file-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg>Margins, Vol. 2</span><time datetime="2026-01-30">January 30, 2026</time><span>Notes</span><span>Small discoveries in pencil.</span></button>
+            <button class="archive-file" type="button" data-category="Essays" data-title="A Useful Silence" data-date="January 12, 2026" data-body="Silence is sometimes absence, but it can also be a working surface. This essay considers the pauses that let a thought become more than its first, loudest version."><span class="file-name"><svg class="aero-icon file-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg>A Useful Silence</span><time datetime="2026-01-12">January 12, 2026</time><span>Essays</span><span>On the pauses that help thought.</span></button>
           </div>
         </section>
         <article class="document-reader" id="documentReader" hidden tabindex="-1" aria-live="polite"><header><div><p class="reader-path">Writing Archive</p><h2 id="readerTitle"></h2><p id="readerMeta"></p></div><button class="reader-close" id="readerClose" type="button">× <span>Back to files</span></button></header><div class="reader-paper"><p id="readerBody"></p></div></article>
@@ -101,6 +105,7 @@
     (function () {
       var folders = document.querySelectorAll('.folder-item');
       var files = document.querySelectorAll('.archive-file');
+      var fileList = document.getElementById('fileList');
       var reader = document.getElementById('documentReader');
       var status = document.getElementById('archiveStatus');
       var count = document.getElementById('folderCount');
@@ -113,6 +118,10 @@
         });
         status.textContent = visible + (visible === 1 ? ' item' : ' items');
         count.textContent = visible + (visible === 1 ? ' document' : ' documents');
+        // Re-trigger the settle-in animation for the newly visible rows.
+        fileList.classList.remove('is-filtering');
+        void fileList.offsetWidth; // force reflow so the class removal registers
+        fileList.classList.add('is-filtering');
       }
       folders.forEach(function (folder) {
         folder.addEventListener('click', function () {
@@ -127,10 +136,17 @@
           document.getElementById('readerMeta').textContent = file.dataset.category + ' / ' + file.dataset.date;
           document.getElementById('readerBody').textContent = file.dataset.body;
           reader.hidden = false;
+          reader.classList.remove('is-open');
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { reader.classList.add('is-open'); });
+          });
           reader.focus();
         });
       });
-      document.getElementById('readerClose').addEventListener('click', function () { reader.hidden = true; });
+      document.getElementById('readerClose').addEventListener('click', function () {
+        reader.hidden = true;
+        reader.classList.remove('is-open');
+      });
     }());
   </script>
 </body>

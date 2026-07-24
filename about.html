@@ -29,11 +29,15 @@
 
     <div class="menu-bar" aria-hidden="true">
       <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+      <span class="menu-status"><span class="status-light"></span>Online</span>
     </div>
 
   <!-- Shared header/nav (identical to index.html) -->
   <header class="site-header">
     <a class="site-title" href="index.html"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#leaf"></use></svg>Your Name</a>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Hover sounds off — click to enable">
+      <svg class="aero-icon" aria-hidden="true"><use href="icons.svg#speaker"></use></svg>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -48,31 +52,38 @@
     </nav>
   </header>
 
-  <main id="main-content">
-    <section class="page-heading">
-      <h1>About</h1>
-    </section>
+  <main id="main-content" class="archive-main">
+    <section class="archive-window" aria-labelledby="about-title">
+      <header class="archive-toolbar">
+        <div class="archive-location"><span aria-hidden="true">▸</span> My Computer <b>›</b> About</div>
+        <p>Details</p>
+      </header>
 
-    <!-- Simple two-part bio layout: photo + text. Easy to expand with more <section>s. -->
-    <section class="about-content">
-      <img class="about-photo" src="img/icons/placeholder-avatar.svg" alt="Portrait of Your Name">
+      <!-- Simple two-part bio layout: photo + text. Easy to expand with more <section>s. -->
+      <div class="about-content">
+        <img class="about-photo" src="img/icons/placeholder-avatar.svg" alt="Portrait of Your Name">
 
-      <div class="about-text">
-        <p>
-          Write a short bio here — who you are, what you work on,
-          and what this site is for.
-        </p>
-        <p>
-          Add as many paragraphs as you like; this is plain content,
-          no layout logic needed.
-        </p>
+        <div class="about-text">
+          <p class="archive-eyebrow">Profile</p>
+          <h1 id="about-title">About</h1>
+          <p>
+            Write a short bio here — who you are, what you work on,
+            and what this site is for.
+          </p>
+          <p>
+            Add as many paragraphs as you like; this is plain content,
+            no layout logic needed.
+          </p>
 
-        <!-- Contact / social links list -->
-        <ul class="social-links" id="links">
-          <li><a href="mailto:you@example.com">Email</a></li>
-          <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        </ul>
+          <!-- Contact / social links list -->
+          <ul class="social-links" id="links">
+            <li><a href="mailto:you@example.com"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#mail"></use></svg> Email</a></li>
+            <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg> GitHub</a></li>
+          </ul>
+        </div>
       </div>
+
+      <footer class="archive-status"><span>Profile</span><span>Personal Workspace</span></footer>
     </section>
   </main>
 
