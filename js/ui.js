@@ -7,18 +7,19 @@
    Structure:
      1. Mobile nav toggle
      2. Auto-updating footer year
-     3. Startup "app launching" animation
-     4. Cursor-tracking glass sheen on the window
-     5. Drifting leaf/dust motes in the background
-     6. Optional hover-sound toggle (off by default)
-     7. Title-bar icon easter egg
-     8. Small init wrapper so everything runs after the DOM is ready
+     3. Cursor-tracking glass sheen on the window
+     4. Drifting leaf/dust motes in the background
+     5. Optional hover-sound toggle (off by default)
+     6. Title-bar icon easter egg
+     7. Small init wrapper so everything runs after the DOM is ready
 
    Motion/sound philosophy: every effect below is decorative, not load-
    bearing — the site works identically with all of them stripped out.
-   Anything continuous or ambient (motes, cursor sheen, startup fade) is
-   skipped entirely when the visitor's OS is set to reduce motion, and
-   sound is opt-in and silent by default.
+   The startup fade-in and window float live in style.css as pure CSS
+   keyframes (not here) specifically so they can't fail into a stuck
+   state if this script errors or is blocked. Anything continuous or
+   ambient (motes, cursor sheen) is skipped entirely when the visitor's
+   OS is set to reduce motion, and sound is opt-in and silent by default.
    ========================================================================== */
 
 /**
@@ -57,25 +58,6 @@ function initFooterYear() {
   var yearEl = document.getElementById('year');
   if (!yearEl) return;
   yearEl.textContent = new Date().getFullYear();
-}
-
-/**
- * The app-window starts invisible (see the prefers-reduced-motion block in
- * style.css) and fades in once the DOM is ready, like a desktop app
- * finishing its launch. Reduced-motion visitors never get the invisible
- * starting state in the first place, so this function is a no-op for them.
- */
-function initStartupAnimation() {
-  var win = document.querySelector('.app-window');
-  if (!win) return;
-  // Two rAFs (rather than one) reliably land after the browser's first
-  // paint of the opacity:0 state, so the transition actually animates
-  // instead of jumping straight to visible.
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      win.classList.add('is-ready');
-    });
-  });
 }
 
 /**
@@ -245,7 +227,6 @@ function initTitleBarEasterEgg() {
 function initSite() {
   initNavToggle();
   initFooterYear();
-  initStartupAnimation();
   initCursorSheen();
   initAmbientMotes();
   initSoundToggle();
