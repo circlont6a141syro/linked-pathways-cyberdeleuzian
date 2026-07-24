@@ -7,7 +7,7 @@
 
   <!-- Note the "../" prefix: this file lives one folder deeper than the
        root pages, so all root-relative asset paths need to step back up. -->
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -36,16 +36,17 @@
 
   <!-- Shared header/nav — links here also use "../" since we're inside /writing -->
   <header class="site-header">
-    <a class="site-title" href="../index.html">Your Name</a>
+    <a class="site-title" href="../index.html"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#leaf"></use></svg>Your Name</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" id="siteNav">
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="../writing.html" class="active">Writing</a></li>
-        <li><a href="../gallery.html">Gallery</a></li>
+        <li><a href="../writing.html" class="active" aria-current="page">Writing Archive</a></li>
+        <li><a href="../gallery.html">Image Archive</a></li>
         <li><a href="../about.html">About</a></li>
+        <li><a href="../about.html#links">Links</a></li>
       </ul>
     </nav>
   </header>

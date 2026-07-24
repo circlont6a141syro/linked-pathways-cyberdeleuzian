@@ -7,7 +7,7 @@
   <title>Home | My Site</title>
 
   <!-- Single global stylesheet, shared across every page -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -54,7 +54,7 @@
     class names identical so one stylesheet/script can target them all.
   -->
   <header class="site-header">
-    <a class="site-title" href="index.html">Your Name</a>
+    <a class="site-title" href="index.html"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#leaf"></use></svg>Your Name</a>
 
     <!-- nav toggle button, used only on small screens (see js/ui.js) -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -63,35 +63,44 @@
 
     <nav class="site-nav" id="siteNav">
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="writing.html">Writing</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="writing.html">Writing Archive</a></li>
+        <li><a href="gallery.html">Image Archive</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="about.html#links">Links</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Main content area for this specific page -->
-  <main id="main-content">
+  <main id="main-content" class="home-main">
 
     <!-- Hero section: full-width intro banner using img/background.jpg -->
-    <section class="hero">
-      <div class="hero-overlay">
-        <h1>Hi, I'm Your Name.</h1>
-        <p>Writer, maker, and occasional photographer.</p>
+    <section class="welcome-screen" aria-labelledby="welcome-title">
+      <div class="welcome-light" aria-hidden="true"></div>
+      <div class="welcome-panel">
+        <p class="welcome-kicker">Personal Workspace</p>
+        <h1 id="welcome-title">Welcome</h1>
+        <p class="welcome-intro">A small, quiet corner for words, images, and the things worth keeping close.</p>
+        <nav class="launch-buttons" aria-label="Open a section">
+          <a class="launch-button writing-launch" href="writing.html"><span class="launch-icon"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#document"></use></svg></span><span><strong>Writing Archive</strong><small>Open notes and essays</small></span></a>
+          <a class="launch-button image-launch" href="gallery.html"><span class="launch-icon"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#image"></use></svg></span><span><strong>Image Archive</strong><small>Browse selected images</small></span></a>
+          <a class="launch-button about-launch" href="about.html"><span class="launch-icon"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#home"></use></svg></span><span><strong>About</strong><small>Read the short version</small></span></a>
+        </nav>
       </div>
+      <aside class="desktop-widgets" aria-label="Desktop utilities">
+        <section class="desktop-widget mood-widget" style="--widget-x: -265px; --widget-y: -95px;"><header class="widget-titlebar">Current Mood</header><p class="widget-value">&#9788; Soft focus</p><small>clear skies, slow ideas</small></section>
+        <section class="desktop-widget listening-widget" style="--widget-x: 270px; --widget-y: -70px;"><header class="widget-titlebar">Listening To</header><p class="widget-value">Afternoon FM</p><small>low volume / on repeat</small></section>
+        <section class="desktop-widget quote-widget" style="--widget-x: -280px; --widget-y: 122px;"><header class="widget-titlebar">Today's Quote</header><p class="widget-quote">“Keep a little room in your heart for the unimaginable.”</p></section>
+        <section class="desktop-widget clock-widget" style="--widget-x: 282px; --widget-y: 130px;"><header class="widget-titlebar">Clock</header><time class="widget-time" id="widgetClock">--:--</time><small id="widgetDate">Loading date…</small></section>
+        <section class="desktop-widget status-widget" style="--widget-x: -210px; --widget-y: 255px;"><header class="widget-titlebar">Status</header><p><span class="status-light"></span> online, taking notes</p></section>
+        <section class="desktop-widget updates-widget" style="--widget-x: 208px; --widget-y: 252px;"><header class="widget-titlebar">Updates</header><p><b>2 new</b> archive entries</p><small>last saved today</small></section>
+      </aside>
+      <p class="widget-hint">Drag widget title bars to rearrange your desk</p>
+      <p class="welcome-status"><span aria-hidden="true">&#9679;</span> Ready</p>
     </section>
 
     <!-- Short intro / highlights section -->
-    <section class="intro">
-      <h2>Welcome</h2>
-      <p>
-        This is my personal corner of the internet. Explore my
-        <a href="writing.html">writing</a>, browse the
-        <a href="gallery.html">gallery</a>, or learn more
-        <a href="about.html">about me</a>.
-      </p>
-    </section>
 
     <!--
       Featured content grid.
@@ -99,26 +108,6 @@
       block and edit its contents — the CSS grid handles new items
       automatically, no layout changes needed.
     -->
-    <section class="featured">
-      <h2>Featured</h2>
-      <div class="card-grid" id="featuredGrid">
-
-        <article class="card">
-          <h3>Latest Piece</h3>
-          <p>A short teaser description of your most recent writing.</p>
-          <a href="writing.html">Read more &rarr;</a>
-        </article>
-
-        <article class="card">
-          <h3>Latest Photos</h3>
-          <p>A short teaser description of a recent gallery addition.</p>
-          <a href="gallery.html">View gallery &rarr;</a>
-        </article>
-
-        <!-- Add more <article class="card"> blocks here as needed -->
-
-      </div>
-    </section>
 
   </main>
 
@@ -134,5 +123,36 @@
 
   <!-- Shared JS, loaded last so the DOM exists before scripts run -->
   <script src="js/ui.js"></script>
+  <script>
+    (function () {
+      var clock = document.getElementById('widgetClock');
+      var date = document.getElementById('widgetDate');
+      function updateClock() {
+        var now = new Date();
+        clock.textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        date.textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+      }
+      updateClock();
+      setInterval(updateClock, 30000);
+      document.querySelectorAll('.desktop-widget').forEach(function (widget) {
+        var handle = widget.querySelector('.widget-titlebar');
+        var startX, startY, originX, originY;
+        handle.addEventListener('pointerdown', function (event) {
+          if (window.matchMedia('(max-width: 760px)').matches) return;
+          startX = event.clientX; startY = event.clientY;
+          originX = parseFloat(widget.dataset.x || 0); originY = parseFloat(widget.dataset.y || 0);
+          widget.classList.add('dragging'); handle.setPointerCapture(event.pointerId);
+        });
+        handle.addEventListener('pointermove', function (event) {
+          if (!widget.classList.contains('dragging')) return;
+          var x = originX + event.clientX - startX; var y = originY + event.clientY - startY;
+          widget.dataset.x = x; widget.dataset.y = y;
+          widget.style.transform = 'translate(calc(-50% + ' + x + 'px), calc(-50% + ' + y + 'px))';
+        });
+        function stopDrag() { widget.classList.remove('dragging'); }
+        handle.addEventListener('pointerup', stopDrag); handle.addEventListener('pointercancel', stopDrag);
+      });
+    }());
+  </script>
 </body>
 </html>

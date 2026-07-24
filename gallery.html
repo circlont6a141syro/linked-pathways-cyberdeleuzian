@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery | My Site</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -33,24 +33,37 @@
 
   <!-- Shared header/nav (identical to index.html) -->
   <header class="site-header">
-    <a class="site-title" href="index.html">Your Name</a>
+    <a class="site-title" href="index.html"><svg class="aero-icon" aria-hidden="true"><use href="icons.svg#leaf"></use></svg>Your Name</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" id="siteNav">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="writing.html">Writing</a></li>
-        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="writing.html">Writing Archive</a></li>
+        <li><a href="gallery.html" class="active" aria-current="page">Image Archive</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="about.html#links">Links</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="main-content">
-    <section class="page-heading">
-      <h1>Gallery</h1>
-      <p>A collection of images. Full-size originals live inside the <code>/gallery</code> folder.</p>
+  <main id="main-content" class="image-archive-main">
+    <section class="image-archive" aria-labelledby="image-archive-title">
+      <header class="image-archive-toolbar"><div><p class="archive-eyebrow">My Pictures</p><h1 id="image-archive-title">Image Archive</h1></div><p class="view-label">Thumbnail View</p></header>
+      <div class="image-thumb-grid" id="imageThumbGrid">
+        <button class="image-thumb selected" type="button" data-title="Morning Window" data-description="Soft light catches a quiet room before the day begins." data-date="May 21, 2026" data-tags="morning, interior, light" data-image="thumb-window" aria-pressed="true"><span class="thumb-art thumb-window" aria-hidden="true"></span><span>Morning Window</span></button>
+        <button class="image-thumb" type="button" data-title="Garden Path" data-description="A narrow path beneath fresh green leaves after rain." data-date="May 09, 2026" data-tags="garden, rain, green" data-image="thumb-garden" aria-pressed="false"><span class="thumb-art thumb-garden" aria-hidden="true"></span><span>Garden Path</span></button>
+        <button class="image-thumb" type="button" data-title="Blue Hour" data-description="The last blue light holding on above the distant roofs." data-date="April 26, 2026" data-tags="evening, city, blue" data-image="thumb-bluehour" aria-pressed="false"><span class="thumb-art thumb-bluehour" aria-hidden="true"></span><span>Blue Hour</span></button>
+        <button class="image-thumb" type="button" data-title="Found on a Walk" data-description="A small bright detail worth carrying home." data-date="April 11, 2026" data-tags="walk, detail, color" data-image="thumb-found" aria-pressed="false"><span class="thumb-art thumb-found" aria-hidden="true"></span><span>Found on a Walk</span></button>
+        <button class="image-thumb" type="button" data-title="Low Tide" data-description="Textured sand and a wide, unhurried horizon." data-date="March 30, 2026" data-tags="coast, tide, landscape" data-image="thumb-tide" aria-pressed="false"><span class="thumb-art thumb-tide" aria-hidden="true"></span><span>Low Tide</span></button>
+        <button class="image-thumb" type="button" data-title="The Red Chair" data-description="A familiar chair meeting an afternoon of deep shadow." data-date="March 08, 2026" data-tags="still life, red, home" data-image="thumb-chair" aria-pressed="false"><span class="thumb-art thumb-chair" aria-hidden="true"></span><span>The Red Chair</span></button>
+      </div>
+      <section class="image-preview" aria-label="Selected image preview">
+        <div class="preview-art thumb-window" id="previewArt" aria-hidden="true"></div>
+        <div class="preview-details"><p class="preview-path">Image Archive / Selected item</p><h2 id="previewTitle">Morning Window</h2><p class="preview-description" id="previewDescription">Soft light catches a quiet room before the day begins.</p><dl><div><dt>Date</dt><dd id="previewDate">May 21, 2026</dd></div><div><dt>Tags</dt><dd id="previewTags">morning, interior, light</dd></div></dl><div class="preview-controls"><button id="previousImage" type="button" aria-label="Previous image">&#9664; Previous</button><span id="imagePosition">1 of 6</span><button id="nextImage" type="button" aria-label="Next image">Next &#9654;</button></div></div>
+      </section>
+      <footer class="image-archive-status"><span>6 images</span><span>Select a thumbnail to inspect it</span></footer>
     </section>
 
     <!--
@@ -62,16 +75,6 @@
       Each <figure> pairs the image with a <figcaption>, which is the
       semantically correct way to caption an image in HTML5.
     -->
-    <section class="gallery-grid" id="galleryGrid">
-
-      <figure class="gallery-item">
-        <img src="gallery/photo-01.jpg" alt="Description of photo 1" loading="lazy">
-        <figcaption>Caption for photo 1</figcaption>
-      </figure>
-
-      <!-- Add more <figure class="gallery-item"> blocks here -->
-
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -81,5 +84,32 @@
   </div><!-- /.app-window -->
 
   <script src="js/ui.js"></script>
+  <script>
+    (function () {
+      var thumbs = Array.prototype.slice.call(document.querySelectorAll('.image-thumb'));
+      var art = document.getElementById('previewArt');
+      var title = document.getElementById('previewTitle');
+      var description = document.getElementById('previewDescription');
+      var date = document.getElementById('previewDate');
+      var tags = document.getElementById('previewTags');
+      var position = document.getElementById('imagePosition');
+      var selected = 0;
+      function showImage(index) {
+        selected = (index + thumbs.length) % thumbs.length;
+        var thumb = thumbs[selected];
+        thumbs.forEach(function (item) { item.classList.remove('selected'); item.setAttribute('aria-pressed', 'false'); });
+        thumb.classList.add('selected'); thumb.setAttribute('aria-pressed', 'true');
+        art.className = 'preview-art ' + thumb.dataset.image;
+        title.textContent = thumb.dataset.title;
+        description.textContent = thumb.dataset.description;
+        date.textContent = thumb.dataset.date;
+        tags.textContent = thumb.dataset.tags;
+        position.textContent = (selected + 1) + ' of ' + thumbs.length;
+      }
+      thumbs.forEach(function (thumb, index) { thumb.addEventListener('click', function () { showImage(index); }); });
+      document.getElementById('previousImage').addEventListener('click', function () { showImage(selected - 1); });
+      document.getElementById('nextImage').addEventListener('click', function () { showImage(selected + 1); });
+    }());
+  </script>
 </body>
 </html>
