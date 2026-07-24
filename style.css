@@ -209,18 +209,16 @@ code {
   mix-blend-mode: overlay;
 }
 
-/* Startup: the window materializes rather than just appearing. Skipped
-   entirely for reduced-motion visitors, who see the finished state
-   immediately with no invisible starting frame. */
+/* Startup + ambient motion: the window fades in like an app launching,
+   then drifts gently, and its glass sheen breathes — all pure CSS
+   keyframes with no JavaScript involved, so a script error or blocked
+   file can never leave the window stuck invisible. Skipped entirely for
+   reduced-motion visitors, who see the finished state immediately. */
 @media (prefers-reduced-motion: no-preference) {
-  .app-window { opacity: 0; }
-  .app-window.is-ready { opacity: 1; transition: opacity 550ms var(--ease-aero); }
-}
-
-/* Ambient motion: the window drifts gently and its glass sheen breathes,
-   like a floating desktop panel. Purely decorative, so it only runs for
-   people who haven't asked their system to reduce motion. */
-@media (prefers-reduced-motion: no-preference) {
+  @keyframes windowLaunch {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
   @keyframes windowFloat {
     from { transform: translateY(0); }
     to   { transform: translateY(-6px); }
@@ -229,7 +227,10 @@ code {
     0%, 100% { opacity: 0.85; }
     50%      { opacity: 1; }
   }
-  .app-window.is-ready { animation: windowFloat 9s var(--ease-aero) infinite alternate; }
+  .app-window {
+    animation: windowLaunch 550ms var(--ease-aero) both,
+               windowFloat 9s 550ms var(--ease-aero) infinite alternate;
+  }
   .app-window::after { animation: sheenDrift 6.5s ease-in-out infinite; }
 }
 
